@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Add the Bootstrap CSS here -->
+</head>
+<body>
+    <h1>{{ 'Edit' if arrival else 'Add' }} Arrival</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ arrival.first_name if arrival else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ arrival.last_name if arrival else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="birth_date">Date of Birth</label>
+            <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ arrival.birth_date if arrival else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="nationality_id">Nationality</label>
+            <select class="form-control" id="nationality_id" name="nationality_id" required>
+                {% for nationality in nationalities %}
+                <option value="{{ nationality.id }}" {% if arrival and arrival.nationality_id == nationality.id %}selected{% endif %}>{{ nationality.name }}</option>
+                {% endfor %}
+            </select>
+            <a href="{{ url_for('add_nationality') }}">Add new nationality</a>
+        </div>
+
+        <div class="form-group">
+            <label for="arrival_date">Arrival Date</label>
+            <input type="date" class="form-control" id="arrival_date" name="arrival_date" value="{{ arrival.arrival_date if arrival else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label for="departure_date">Departure Date</label>
+            <input type="date" class="form-control" id="departure_date" name="departure_date" value="{{ arrival.departure_date if arrival else '' }}">
+        </div>
+        <button type="submit" class="btn btn-primary">{{ 'Update' if arrival else 'Add' }}</button>
+    </form>
+</body>
+</html>

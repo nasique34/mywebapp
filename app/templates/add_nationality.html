@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Nationality</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Add the Bootstrap CSS here -->
+</head>
+<body>
+    <h1>Add Nationality</h1>
+    <form method="POST">
+        <div class="form-group">
+            <label for="name">Nationality</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</body>
+</html>
